@@ -1,0 +1,103 @@
+> About the Task:
+- To Create a dashboard in Power BI for visualizing relevant KPIs and metrics in the Call Centre dataset provided.
+- Respond to the client's request by providing a well-designed Power BI dashboard reflecting the requested KPIs.
+
+> About the Dataset: 
+Dataset Name: 01 Call-Center-Dataset.xlsx
+
+> Attributes present:
+1) Call Id: This column likely contains a unique identifier for each call received by the call center. It's used to distinguish one call from another and may be helpful for tracking purposes.
+
+2) Agent: This column likely contains the name or identifier of the agent who handled the call. It helps to identify which agent was responsible for addressing a particular customer query or concern.
+
+3) Date: This column contains the date on which the call was received by the call center. It helps in analyzing call patterns over time, such as daily, weekly, or monthly trends.
+
+4) Year: I have created this column by applying LEFT function on Date column to separate the year from it.
+=LEFT(C2,4)
+
+5) Months_Name: I have created this column by applying =TEXT(C2, "mmmm") function on Date column to separate the month name from it.
+
+6) Time: This column contains the time at which the call was received by the call center. It helps in analyzing call patterns throughout the day and identifying peak call times.
+Topic: This column likely contains information about the subject or reason for the call. It helps in categorizing calls into different topics or issues, which can be useful for identifying common customer concerns.
+
+7) Answered: This column may contain a binary value indicating whether the call was answered by an agent or not. It helps in understanding call center performance in terms of call pickup rates.
+
+8) Resolved: This column may contain a binary value indicating whether the customer's issue or query was resolved during the call. It helps in evaluating agent effectiveness and customer satisfaction.
+
+9) Speed of answer in seconds: This column contains the time taken for the call to be answered by an agent, measured in seconds. It helps in assessing call center efficiency in terms of response time.
+
+10) AvgTalkDuration: This column contains the average duration of the call in seconds. It helps in understanding how long calls typically last and can be used to assess agent productivity and workload.
+
+11) Satisfaction rating: This column may contain feedback provided by customers regarding their satisfaction with the call handling process. It helps in evaluating overall customer
+experience and identifying areas for improvement.
+
+> Data Preprocessing Steps performed using Power BI:
+
+1) Time was in "10:00:29" format so I converted it into "10"  format and created a new column named "Hours" to understand it in a better way.
+
+2) Using this column I created new column named Time_Category to divide Time into Morning, Afternoon and Evening so that it could be easier to visualize time.
+
+Here's the formula I've applied for it:
+
+Time_Category = SWITCH(
+    TRUE(),
+    AND([Hours] >= 0, [Hours] < 12), "Morning",
+    AND([Hours] >= 12, [Hours] < 17), "Afternoon",
+    AND([Hours] >= 17, [Hours] < 22), "Evening",
+    "Night"
+)
+
+#The Answered column contained both Y and N which means call answered and not answered respectively.But I wanted only the anwered ones for better visualization so I performed the steps below. Similar for the Resolved Column.
+
+3) Created a New Calculated Column that evaluates whether the call is resolved or not and named this column as "Resolved_Yes".
+Resolved_Yes = IF([Resolved] == "Y", 1, 0)
+
+4) Created a new measure that calculates the count of resolved calls where the status is "Y".
+Resolved_Yes_Count = SUM([Resolved_Yes])
+
+5) Created a new calculated column that evaluates whether the call was answered or not and named this column as "Answered_Yes".
+Answered_Yes = IF('Sheet1'[Answered] = "Y", 1, 0)
+
+6) Created a new measure that calculates the count of answered calls where the status is "Y".
+Answered_Yes_Count = SUM([Answered_Yes])
+
+# Now that we are done with Data Preprocessing let's create the Dashboard out of it..
+
+> Insights Gained:
+
+1) The respective data is of months Jan, Feb and March of year 2021.
+
+2) Total number of agents is 8.
+
+3) About 5000 calls took place.
+
+4) Out of which 4054 were answered and 946 remained unanswered.
+
+5) Out of these 5000 calls 3646 were resolved.
+
+6) Average Customer Satisfaction Rating is about 3.4
+
+7) Average Speed of Answer given by Agents is 67.52
+
+8) Most of the calls took place during Afternoon and least were at Evening.
+
+9) Most of the calls were about Streaming and then comes Technical Support Related.
+
+10) Most of the calls took place in Jan then March and lastly Feb.
+
+11) Jim answered and resolved highest number of calls and Stewart answered and resolved the least.
+
+12) Though Jim answered and resolved the most of the calls, Martha has the highest average satisfaction rating by customer and Joe has the least.
+
+
+
+
+
+
+
+
+
+
+
+
+
