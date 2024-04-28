@@ -1,0 +1,32 @@
+> Insights Gained:
+
+1) Total Sales 12.64 Millions
+
+2) Total Profit 1.47 Millions.
+
+3) Total quantity of products sold is 178,000.
+
+4) Total Shipping cost of the products is 1.35 Millions.
+
+5) Top 7 countries which contributes the most in sales are:
+United States
+Australia
+France
+China
+Germany
+Mexico
+India
+
+6) Top 5 states which contributes the most in sales are:
+England
+California
+Ille-de-France
+New York
+New South Wales
+
+7) Technology related products contributes the most in sales
+then comes Furniture category and lastly Office Supplies.
+
+8) APAC market contributes the highest in sales and Canada contributes the least.
+
+9) Most of the products were shipped by Standard Class and least were shipped same day. 
